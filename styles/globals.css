@@ -2,8 +2,23 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f1f1f1;
+}
+
+main{
+  position: relative;
+  min-height: 100vh;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  padding: 2vh;
+  width: 100%;
+  color: #fff;
+  font-size:x-small;
+  background-color: #333;
 }
 
 a {
@@ -13,4 +28,103 @@ a {
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.cen {
+  display: flex;
+  justify-content: center;
+  margin-top: 15rem;
+}
+
+.nav {
+  /* width: 28%; */
+  margin-bottom: 2rem;
+}
+
+.nav ul{
+  display: flex;
+  list-style-type: none;
+  background-color: rgb(36, 35, 37);
+  background-color: #353935;
+  color:rgb(241, 239, 243);
+  cursor: pointer;
+}
+
+.nav ul li{
+  /* box-shadow: inset 3px 3px black; */
+  padding: 1.5vh;
+  transition: 0.5s;
+}
+
+.nav ul :hover{
+background-color: rgb(241, 239, 243);
+color: rgb(36, 35, 37);
+}
+
+.header{
+  margin: 0 auto;
+}
+
+.section{
+  width: 65%;
+  margin: auto;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2rem;
+  min-height: 70vh; 
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+  background: #fff;
+}
+
+.form{
+  border: dotted;
+  margin: 2rem auto;
+  width: 70%;
+  padding: 10px;
+}
+
+.form input{
+  border-radius: 10px;
+  line-height: 30px;
+  margin: 10px 0;
+  border: 1px solid rgba(0,0,0,.15);
+  padding: 0 10px;
+  letter-spacing: 0.5px;
+  background: #FFFAF0;
+}
+
+.form input:focus-visible{
+border: rgb(92, 179, 253);
+}
+
+button {
+  width: 5rem;
+  height: 2rem;
+  color: #D8D8D8;
+  background-color: #292929;
+  margin: 1rem;
+  border-radius: 5px;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: #313131;
+}
+
+
+.error-text{
+  color: red;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: 0.4 rem;
+  font-weight: lighter;
+} 
+
+.active{
+  background: black;
 }
