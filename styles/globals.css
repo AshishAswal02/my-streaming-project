@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Nunito";
   background-color: #f1f1f1;
 }
 
@@ -32,11 +34,17 @@ a {
   padding: 0;
 }
 
+h3{
+  margin: 1.5rem 0;
+}
+
+
 .cen {
   display: flex;
   justify-content: center;
   margin-top: 15rem;
 }
+
 
 .nav {
   /* width: 28%; */
@@ -100,8 +108,6 @@ border: rgb(92, 179, 253);
 }
 
 button {
-  width: 5rem;
-  height: 2rem;
   color: #D8D8D8;
   background-color: #292929;
   margin: 1rem;
@@ -110,6 +116,7 @@ button {
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
+  padding: 7px;
 }
 
 button:hover{
@@ -127,4 +134,48 @@ button:hover{
 
 .active{
   background: black;
+}
+
+.paper{
+  width: 70%;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 70vh;
+  text-align: center;
+}
+
+.paper ul li{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 29px;
+  margin: 0 4%;
+}
+
+.paper p{
+  margin: 2vh;
+  font-size: x-small;
+}
+
+.offerDetails{
+  /* border: pink solid; */
+}
+
+.choiceBackground{
+  /* background-color: rgb(11, 11, 17); */
+  /* background-color: #111; */
+  /* background: url("https://live.staticflickr.com/2377/2451433325_cc299ef845_b.jpg"); */
+  background-repeat: no-repeat;
+  background-size:contain;
+  /* background-image: url('/public/images/pic1.jpg'); */
+}
+
+.summary{
+  text-align: left;
+}
+
+.offerImage{
+  /* width: 25rem;
+  height: 25rem; */
+  /* border: dotted; */
+  display: inline-flex; 
 }

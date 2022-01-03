@@ -17,13 +17,7 @@ const Rough = () => {
 
     return (
         <div>
-            <Button aria-controls='menu' onClick={handleOpenMenu} color = "secondary" varient = "outlined">Hey there</Button>
-            <Menu onClick={handleMenuClose} id = 'menu' anchorEl={anchorEl} open = {Boolean(anchorEl)}>
-                <MenuItem onClick={handleMenuClose}>My Account afafe</MenuItem>
-                <MenuItem onClick={handleMenuClose}>My Account </MenuItem>
-                <MenuItem onClick={handleMenuClose}>My Account </MenuItem>
-                <MenuItem onClick={handleMenuClose}>My Account </MenuItem>
-            </Menu>
+            rough page
         </div>
     )
 }

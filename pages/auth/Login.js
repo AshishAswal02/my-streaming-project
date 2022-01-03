@@ -67,6 +67,7 @@ const Login = () => {
                 toast.error('Some error occured');
                 console.dir(error);
             })
+
     }, []);
 
 

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import 'react-toastify/dist/ReactToastify.css'
 import React, { useEffect } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -21,7 +21,6 @@ const Details = () => {
         sessionStorage.setItem('restrictAccess', 'on');
         toast.success('Logged out', {autoClose : 2000});
         router.push('/');
-        
     }
     
    
