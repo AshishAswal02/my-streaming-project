@@ -46,11 +46,6 @@ h3{
 }
 
 
-.nav {
-  /* width: 28%; */
-  margin-bottom: 2rem;
-}
-
 .nav ul{
   display: flex;
   list-style-type: none;
@@ -161,11 +156,12 @@ button:hover{
 }
 
 .choiceBackground{
+ padding-top: 2rem;
   /* background-color: rgb(11, 11, 17); */
   /* background-color: #111; */
   /* background: url("https://live.staticflickr.com/2377/2451433325_cc299ef845_b.jpg"); */
-  background-repeat: no-repeat;
-  background-size:contain;
+  /* background-repeat: no-repeat; */
+  /* background-size:contain; */
   /* background-image: url('/public/images/pic1.jpg'); */
 }
 
@@ -174,8 +170,9 @@ button:hover{
 }
 
 .offerImage{
-  /* width: 25rem;
-  height: 25rem; */
-  /* border: dotted; */
   display: inline-flex; 
+}
+
+.offerImage img{
+  margin-left: 2.5rem;
 }

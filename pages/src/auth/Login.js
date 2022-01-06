@@ -77,7 +77,7 @@ const Login = () => {
                 sessionStorage.setItem('restrictAccess', 'off');
                 toast.success('Loging successful', { autoClose: 2000 });
                 // sessionStorage.setItem('user': user.);
-                router.push('../src/Details');
+                router.push('/src/Details');
             }
             setIsSubmit(false);
             setFormErrors({});

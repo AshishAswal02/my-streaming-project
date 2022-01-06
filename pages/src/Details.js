@@ -12,7 +12,7 @@ const Details = () => {
         const restrictAccess = sessionStorage.getItem('restrictAccess');
         if (restrictAccess === 'on') {      //if auth is false, redirect to Login
             toast.warn('please login first', {autoClose : 2000});
-            router.push('../auth/Login');
+            router.push('/src/auth/Login');
         }
     }, []);
 

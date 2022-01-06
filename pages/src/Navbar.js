@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import { Typography, MenuItem, Menu } from '@material-ui/core';
 
 
-
 const Navbar = (props) => {
     
     const router = useRouter();
@@ -64,7 +63,7 @@ const Navbar = (props) => {
                     </li>
                     {
                         LoggedInContent &&
-                        <li className={isActive('/auth/Login')}>
+                        <li className={isActive('/src/auth/Login')}>
                             <Link href='/src/auth/Login'>
                                 <Typography>Login</Typography>
                             </Link>
@@ -72,7 +71,7 @@ const Navbar = (props) => {
                     }
                     {
                         LoggedInContent &&
-                        <li className={isActive('/auth/Signup')}>
+                        <li className={isActive('/src/auth/Signup')}>
                             <Link href='/src/auth/Signup'>
                                 <Typography>SignUp</Typography>
                             </Link>

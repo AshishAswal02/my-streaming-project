@@ -1,9 +1,12 @@
+import image1 from '../public/images/pic1.jpg'
 export const packages = [
     {
         id: "1",
         name: "Choice",
         color: "#e88534",
-        image: "https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_CHOICE_Header.svg",
+        bgColor: "",
+        bgImage: "/images/pic1.jpg",
+        offerImage: "https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_CHOICE_Header.svg",
         data: {
             "heading": "Entertainment you crave, plus can’t-miss sports",
             "details": [
@@ -19,7 +22,9 @@ export const packages = [
         id: "2",
         name: "Entertainment",
         color: "#76d4f8",
-        image: "https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_ENTERTAINMENT_Header.svg",
+        bgColor: "",
+        bgImage: "/images/pic2.jpg",
+        offerImage: "https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_ENTERTAINMENT_Header.svg",
         data: {
             heading: "The essentials",
             details: [
@@ -35,7 +40,9 @@ export const packages = [
         id: "3",
         name: "Premier",
         color: "#7a267b",
-        image: "https://www.directv.com/idpassets/sales/directv/upper_funnel/stream/stream_package_cards/STREAM_PREMIER_Header.svg",
+        bgColor: "",
+        bgImage: "/images/pic3.jpg",
+        offerImage: "https://www.directv.com/idpassets/sales/directv/upper_funnel/stream/stream_package_cards/STREAM_PREMIER_Header.svg",
         data: {
             heading: "Our greatest package",
             details: [
@@ -52,7 +59,9 @@ export const packages = [
         id: "4",
         name: "Ultimate",
         color: "#21528c",
-        image: "https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_ULTIMATE_Header.svg",
+        bgColor: "",
+        bgImage: "/images/pic4.jpg",
+        offerImage: "https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_ULTIMATE_Header.svg",
         data: {
             heading: "Loads of movie favorites for film fans",
             details: [
