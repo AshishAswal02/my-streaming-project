@@ -3,6 +3,9 @@ import '../styles/globals.css'
 import Navbar from './src/Navbar'
 import { useEffect } from 'react'
 
+
+
+
 function MyApp({ Component, pageProps }) {
 
   useEffect(() => {

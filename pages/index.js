@@ -4,11 +4,24 @@ import React from 'react'
 import Head from 'next/head'
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import Navbar from './src/Navbar';
 // import Button from '@material-ui/core/Button'
 // import { Button } from '@mui/material';
 
 
-const index = () => {
+export async function getStaticProps() {
+  const res = await fetch('http://localhost:3000/api/packageInfo');
+  const dbData = await res.json();
+
+  return {
+      props: {
+          dbData,
+          ss: 1
+      }
+  }
+}
+
+const index = ({ss, dbData}) => {
 
 
 
@@ -24,7 +37,7 @@ const index = () => {
 
 
       </Head>
-
+      {/* <Navbar ss={ss} dbData= {dbData} /> */}
       <main>
         <section className="section">
         {/* <Button variant="outlined" color="error">

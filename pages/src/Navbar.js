@@ -5,19 +5,8 @@ import { useRouter } from 'next/router'
 import { Typography, MenuItem, Menu } from '@material-ui/core';
 
 
-export async function getStaticProps() {
-    // const res = await fetch('http://localhost:3000/api/packageInfo');
-    // const dbData = await res.json();
 
-    return {
-        props: {
-            // dbData,
-            ss: 1
-        }
-    }
-}
-
-const Navbar = ({ss}) => {
+const Navbar = (props) => {
     
     const router = useRouter();
     const [packages, setPackages] = useState([]);
@@ -31,8 +20,9 @@ const Navbar = ({ss}) => {
 
     useEffect(() => {
         setLoggedInContent(sessionStorage.getItem('restrictAccess') === 'on' ? true : false);
-        console.log('ok');
-        console.log(ss);
+        // console.log('ok');
+        // console.log(props);
+        // console.log(props.ss);
     });
 
 
@@ -75,7 +65,7 @@ const Navbar = ({ss}) => {
                     {
                         LoggedInContent &&
                         <li className={isActive('/auth/Login')}>
-                            <Link href='/auth/Login'>
+                            <Link href='/src/auth/Login'>
                                 <Typography>Login</Typography>
                             </Link>
                         </li>
@@ -83,7 +73,7 @@ const Navbar = ({ss}) => {
                     {
                         LoggedInContent &&
                         <li className={isActive('/auth/Signup')}>
-                            <Link href='/auth/Signup'>
+                            <Link href='/src/auth/Signup'>
                                 <Typography>SignUp</Typography>
                             </Link>
                         </li>
@@ -104,19 +94,19 @@ const Navbar = ({ss}) => {
 
 
 
-                                {packages.map(p => (
-                                    <Link href={'/offers/' + p.id} key={p.id}>
-                                        <MenuItem onClick={handleMenuClose}>{p.name}</MenuItem>
-                                    </Link>
-                                ))}
+                                    {packages.map(p => (
+                                        <Link href={'/src/offers/' + p.id} key={p.id}>
+                                            <MenuItem onClick={handleMenuClose}>{p.name}</MenuItem>
+                                        </Link>
+                                    ))}
 
-                                {
+                                {/* {
                                     packages.map( x => {
-                                        <Link href={'api/offers/' + x.id} key={x.id}>
+                                        <Link href={'/offers/' + x.id} key={x.id}>
                                             <Typography>{x.name}</Typography>
                                         </Link>
                                     })
-                                }
+                                } */}
                                 {/* <Link href='/offers/Choice'>
                                     <MenuItem onClick={handleMenuClose}>Choice</MenuItem>
                                 </Link>
