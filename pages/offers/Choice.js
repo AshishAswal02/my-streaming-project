@@ -23,7 +23,9 @@ const Choice = () => {
                         <Paper className="paper">
                             <Box mb={5}  className='summary'>
                                 <img width='100%' src="https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_CHOICE_Header.svg" />
-                                <Box pl={3} borderColor='warning.main' borderLeft={5}>
+                                <Box pl={1} 
+                                // borderColor= '#21528c'  
+                                border={8}>
                                     <h3>Entertainment you crave, plus can’t-miss sports</h3>
                                     <ul>
                                         <li>90+ live channels and local TV stations</li>

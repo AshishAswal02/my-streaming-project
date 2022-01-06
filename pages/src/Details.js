@@ -9,7 +9,6 @@ const Details = () => {
     const router = useRouter();
 
     useEffect(() => {
-        // let shouldUserBeRedirected = sessionStorage.getItem('auth');
         const restrictAccess = sessionStorage.getItem('restrictAccess');
         if (restrictAccess === 'on') {      //if auth is false, redirect to Login
             toast.warn('please login first', {autoClose : 2000});
@@ -22,7 +21,6 @@ const Details = () => {
         toast.success('Logged out', {autoClose : 2000});
         router.push('/');
     }
-    
    
     
     return (
