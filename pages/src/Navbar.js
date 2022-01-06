@@ -4,14 +4,26 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router'
 import { Typography, MenuItem, Menu } from '@material-ui/core';
 
-const Navbar = () => {
+
+export async function getStaticProps() {
+    // const res = await fetch('http://localhost:3000/api/packageInfo');
+    // const dbData = await res.json();
+
+    return {
+        props: {
+            // dbData,
+            ss: 1
+        }
+    }
+}
+
+const Navbar = ({ss}) => {
     
     const router = useRouter();
     const [packages, setPackages] = useState([]);
     const [LoggedInContent, setLoggedInContent] = useState(false);
 
     const handleLogout = () => {
-        // alert('logout clicked')
         sessionStorage.setItem('restrictAccess', 'on');
         toast.success('Logged out', { autoClose: 2000 });
         router.push('/');
@@ -19,6 +31,8 @@ const Navbar = () => {
 
     useEffect(() => {
         setLoggedInContent(sessionStorage.getItem('restrictAccess') === 'on' ? true : false);
+        console.log('ok');
+        console.log(ss);
     });
 
 
@@ -38,7 +52,6 @@ const Navbar = () => {
 
     const handleOpenMenu = e => {
         setAnchorEl(e.currentTarget);
-        // console.dir(packages)
     }
 
     const handleMenuClose = () => {
@@ -46,7 +59,6 @@ const Navbar = () => {
     }
 
     return (
-
         <>
             <nav className='nav'>
                 <ul>
@@ -85,7 +97,7 @@ const Navbar = () => {
                    
 
                     {
-                        // !LoggedInContent &&
+                        !LoggedInContent &&
                         <li className={isActive('')}>
                             <Typography aria-controls='menu' onClick={handleOpenMenu}>Steam</Typography>
                             <Menu onClick={handleMenuClose} id='streamMenu' anchorEl={anchorEl} open={Boolean(anchorEl)}>
@@ -96,17 +108,15 @@ const Navbar = () => {
                                     <Link href={'/offers/' + p.id} key={p.id}>
                                         <MenuItem onClick={handleMenuClose}>{p.name}</MenuItem>
                                     </Link>
-                                    // console.log(p + " is the data");
                                 ))}
 
                                 {
-                                    // packages.map( package => {
-                                    //     <Link href={'api/offers/' + package.id} key={pacakge.id}>
-                                    //         <Typography>{package.name}</Typography>
-                                    //     </Link>
-                                    // })
+                                    packages.map( x => {
+                                        <Link href={'api/offers/' + x.id} key={x.id}>
+                                            <Typography>{x.name}</Typography>
+                                        </Link>
+                                    })
                                 }
-
                                 {/* <Link href='/offers/Choice'>
                                     <MenuItem onClick={handleMenuClose}>Choice</MenuItem>
                                 </Link>
@@ -135,14 +145,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-
-export async function getStaticProps() {
-
-    //    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    //    const data = await res.json();
-    //     console.log(data + " prerenderd data");
-    return {
-        props: { data: '2' }
-    };
-};

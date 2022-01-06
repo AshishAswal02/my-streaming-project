@@ -3,17 +3,6 @@ import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
 
 
-// export const getStaticProps = async () => {
-    
-//     const res  = await fetch();
-//     const data = res.json();
-    
-//     return {
-//         props : {data}
-//     }
-// }
-
-
 const Login = () => {
 
     const initialValues = { email: "", password: "" };
