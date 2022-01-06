@@ -71,7 +71,7 @@ const Deatils = ({ data: offer }) => {
                                     <Box pl={3} borderColor={color} borderLeft={8}>
                                         <h3>{heading}</h3>
                                         <ul> 
-                                            {details.map(p => <li>{p}</li>)}
+                                            {details.map(p => <li key={p}>{p}</li>)}
                                         </ul>
                                         <p>{moreInfo}</p>
                                     </Box>

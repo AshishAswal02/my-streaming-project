@@ -1,7 +1,6 @@
 import React from 'react'
 // import Image from 'next/image'
 import { Paper, Divider, Box, Button, Grid } from '@material-ui/core';
-import style from '../../styles/offers.module.css'
 
 const Choice = () => {
 
