@@ -24,7 +24,6 @@ const Choice = () => {
                             <Box mb={5}  className='summary'>
                                 <img width='100%' src="https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_CHOICE_Header.svg" />
                                 <Box pl={1} 
-                                // borderColor= '#21528c'  
                                 border={8}>
                                     <h3>Entertainment you crave, plus can’t-miss sports</h3>
                                     <ul>
