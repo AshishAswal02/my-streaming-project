@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router'
-import { Typography, MenuItem, Menu } from '@material-ui/core';
+import { Typography, Button, Paper, Popper, Box, MenuItem, Menu } from '@material-ui/core';
 
 
 const Navbar = (props) => {
-    
+
     const router = useRouter();
     const [packages, setPackages] = useState([]);
     const [LoggedInContent, setLoggedInContent] = useState(false);
+    // const [openBackdrop, setOpenBackdrop] = useState(false);
+    const [anchorElMenu, setAnchorElMenu] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleLogout = () => {
         sessionStorage.setItem('restrictAccess', 'on');
@@ -17,12 +20,18 @@ const Navbar = (props) => {
         router.push('/');
     }
 
+    const handleClickOnMinicart = e => {
+        setAnchorEl(anchorEl ? null : e.currentTarget);
+    };
+
+    const handleClickOnMenu = e => {
+        setAnchorElMenu(anchorElMenu ? null: e.currentTarget);
+    }
+
     useEffect(() => {
         setLoggedInContent(sessionStorage.getItem('restrictAccess') === 'on' ? true : false);
-        // console.log('ok');
-        // console.log(props);
-        // console.log(props.ss);
     });
+
 
 
     useEffect(() => {
@@ -37,88 +46,75 @@ const Navbar = (props) => {
         return route == router.pathname ? 'active' : '';
     }
 
-    const [anchorEl, setAnchorEl] = useState(null);
 
-    const handleOpenMenu = e => {
-        setAnchorEl(e.currentTarget);
-    }
-
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-    }
 
     return (
         <>
             <nav className='nav'>
                 <ul>
-                    <li className={isActive('/')}>
-                        <Link href="/">
+                    <Link href="/">
+                        <li className={isActive('/')}>
                             <Typography>Home</Typography>
-                        </Link>
-                    </li>
-                    <li className={isActive('/src/Rough')}>
-                        <Link href='/src/Rough'>
+                        </li>
+                    </Link>
+                    <Link href='/src/Rough'>
+                        <li className={isActive('/src/Rough')}>
                             <Typography>Rough</Typography>
-                        </Link>
-                    </li>
+                        </li>
+                    </Link>
                     {
                         LoggedInContent &&
-                        <li className={isActive('/src/auth/Login')}>
-                            <Link href='/src/auth/Login'>
+                        <Link href='/src/auth/Login'>
+                            <li className={isActive('/src/auth/Login')}>
                                 <Typography>Login</Typography>
-                            </Link>
-                        </li>
+                            </li>
+                        </Link>
                     }
                     {
                         LoggedInContent &&
-                        <li className={isActive('/src/auth/Signup')}>
-                            <Link href='/src/auth/Signup'>
-                                <Typography>SignUp</Typography>
-                            </Link>
-                        </li>
-                    }
-
-                    <li className={isActive('/src/Details')}>
-                        <Link href='/src/Details'>
-                            <Typography>Details</Typography>
+                        <Link href='/src/auth/Signup'>
+                            <li className={isActive('/src/auth/Signup')}>
+                                <Typography sx={{TransitionEvent: '0.5s'}}>SignUp</Typography>
+                            </li>
                         </Link>
-                    </li>
-                   
-
+                    }
+                    <Link href='/src/Details'>
+                        <li className={isActive('/src/Details')}>
+                            <Typography>Details</Typography>
+                        </li>
+                    </Link>
                     {
                         !LoggedInContent &&
                         <li className={isActive('')}>
-                            <Typography aria-controls='menu' onClick={handleOpenMenu}>Steam</Typography>
-                            <Menu onClick={handleMenuClose} id='streamMenu' anchorEl={anchorEl} open={Boolean(anchorEl)}>
+                            <>
+                                <Typography aria-controls='stream-menu' aria-haspopup='true'
+                                onClick={handleClickOnMenu} >Steam</Typography>
 
-
+                                <Menu disableAutoFocusItem
+                                    PaperProps={{
+                                        style: {
+                                            transform: 'translateX(-25%) translateY(8%)',
+                                        }
+                                    }}
+                                    MenuListProps={{
+                                        style: {
+                                            padding: 0,
+                                        },
+                                    }}
+                                    id='stream-menu'
+                                    onClick={handleClickOnMenu}
+                                    anchorEl={anchorElMenu}
+                                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                                    // transformOrigin={{ vertical: "top", horizontal: "center" }} 
+                                    open={Boolean(anchorElMenu)}>
 
                                     {packages.map(p => (
                                         <Link href={'/src/offers/' + p.id} key={p.id}>
-                                            <MenuItem onClick={handleMenuClose}>{p.name}</MenuItem>
+                                            <MenuItem onClick={handleClickOnMenu}>{p.name}</MenuItem>
                                         </Link>
                                     ))}
-
-                                {/* {
-                                    packages.map( x => {
-                                        <Link href={'/offers/' + x.id} key={x.id}>
-                                            <Typography>{x.name}</Typography>
-                                        </Link>
-                                    })
-                                } */}
-                                {/* <Link href='/offers/Choice'>
-                                    <MenuItem onClick={handleMenuClose}>Choice</MenuItem>
-                                </Link>
-                                <Link href='/offers/Entertainment'>
-                                    <MenuItem onClick={handleMenuClose}>Entertainment</MenuItem>
-                                </Link>
-                                <Link href='/offers/Premier'>
-                                    <MenuItem onClick={handleMenuClose}>Premier</MenuItem>
-                                </Link>
-                                <Link href='/offers/Ultimate'>
-                                    <MenuItem onClick={handleMenuClose}>Ultimate</MenuItem>
-                            </Link> */}
-                            </Menu>
+                                </Menu>
+                            </>
                         </li>
                     }
                     {
@@ -127,6 +123,19 @@ const Navbar = (props) => {
                             <Typography>Logout</Typography>
                         </li>
                     }
+                    <li onClick={handleClickOnMinicart}>
+                        <Typography onClick={handleClickOnMinicart}>
+                            Toggle Popper
+                        </Typography>
+                        <Popper onClick={handleClickOnMinicart} open={Boolean(anchorEl)} anchorEl={anchorEl}>
+                            <Box borderRadius='borderRadius' borderColor={'#313131b8'} bgcolor={'background.paper'} border={1} p={3}>
+                                <p>The content of the Popper.</p>
+                                <p>The content of the Popper.</p>
+                                <p>The content of the Popper.</p>
+                                <p>The content of the Popper.</p>
+                            </Box>
+                        </Popper>
+                    </li>
                 </ul>
             </nav>
         </>
