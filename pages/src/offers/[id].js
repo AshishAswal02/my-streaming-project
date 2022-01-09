@@ -8,7 +8,6 @@ import Head from 'next/head'
 
 export async function getStaticPaths() {
     const res = await fetch('https://my-bassist-chris.mybassistchris.now.sh/api/gear/api/packageInfo');
-    // const res = await fetch('http://localhost:3000/api/packageInfo');
     const packages = await res.json();
 
     const paths = packages.map( key => {
@@ -26,7 +25,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const res = await fetch('https://my-bassist-chris.mybassistchris.now.sh/api/gear/api/packageInfo');
-    // const res = await fetch('http://localhost:3000/api/packageInfo');
     const packages = await res.json();
 
     const packageList = packages.filter( pack => pack.id.toString() === context.params.id)
