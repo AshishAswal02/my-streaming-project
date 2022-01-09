@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button, Box, Typography, CircularProgress , Backdrop , Popper, Paper } from '@material-ui/core';
 // import { ToggleButton } from '@mui/material';
 
+    // const res = await fetch('http://localhost:3000/api/packageInfo');
 
 const Rough = () => {
     const [anchor, setAnchor] = useState(null);
