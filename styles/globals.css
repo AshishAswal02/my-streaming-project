@@ -34,10 +34,14 @@ a {
   padding: 0;
 }
 
-h3{
+/* h3{
+} */
+.Styledh3{
   margin: 1.5rem 0;
 }
-
+.Styledh4{
+  color: #3c7cc8;
+}
 
 .cen {
   display: flex;
@@ -57,14 +61,38 @@ h3{
 
 .nav ul li{
   padding: 1.5vh;
-  transition: 0.5s;
+  position: relative;
+  /* transition: color, background 0.5s ; */
 }
 
 
-.nav ul :hover{
-background-color: rgb(241, 239, 243);
+
+/* .nav ul :hover{
+background: rgb(241, 239, 243);
 color: rgb(36, 35, 37);
+} */
+
+.underline::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* top: 1; */
+  bottom: 0;
+  height: 4px;
+  background: #fff;
+  transition: transform 200ms ease-in-out;
+  transform: scale(0);
 }
+
+.underline:hover::before,
+.underline:focus::before{
+  transform: scaleX(1);
+   
+}
+
+
+
 
 .header{
   margin: 0 auto;
@@ -79,7 +107,6 @@ color: rgb(36, 35, 37);
   min-height: 70vh; 
   box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
   background: #fff;
-  background: beige;
 }
 
 .form{
@@ -152,8 +179,8 @@ button:hover{
   font-size: x-small;
 }
 
-.offerDetails{
-  /* border: pink solid; */
+.offerDetails ul{
+  line-height: 2px;
 }
 
 .choiceBackground{
@@ -176,4 +203,37 @@ button:hover{
 
 .offerImage img{
   margin-left: 2.5rem;
+}
+
+
+
+
+.unselectedChannel{
+  transition: background 50ms;
+}
+
+.unselectedChannel:hover{
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  border-color: #2a6fbe;
+}
+
+.unselectedChannel:active{
+  border-color: #2a6fbe;
+  background:#b5d4f8;
+}
+
+
+.selectedChannel{
+  background: #dbe6f0;
+  transition: background 50ms;
+}
+
+.selectedChannel:hover{
+  border-color: #2a6fbe;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.selectedChannel:active{
+  border-color: #2a6fbe;
+  background:#b5d4f8
 }

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router'
-import { Typography, Button, Paper, Popper, Box, MenuItem, Menu } from '@material-ui/core';
+import { Typography, Grid, Popper, Box, MenuItem, Menu } from '@material-ui/core';
 
 
-const Navbar = (props) => {
+const Navbar = () => {
 
     const router = useRouter();
     const [packages, setPackages] = useState([]);
@@ -25,7 +25,7 @@ const Navbar = (props) => {
     };
 
     const handleClickOnMenu = e => {
-        setAnchorElMenu(anchorElMenu ? null: e.currentTarget);
+        setAnchorElMenu(anchorElMenu ? null : e.currentTarget);
     }
 
     useEffect(() => {
@@ -33,14 +33,24 @@ const Navbar = (props) => {
     });
 
 
-
+    // const [key, setKey] = useState();
+    // const [value, setValue] = useState();
     useEffect(() => {
         fetch('/api/packageInfo')
             .then(res => res.json())
             .then(data => {
                 setPackages(data);
-            })
+            });
+
+            // setKey(localStorage.key(1));
+            // setValue(localStorage.getItem('cinemax'));
+            // console.log(Object.entries(localStorage));
+
     }, []);
+
+    // useEffect(() => {
+    //     console.log(' mission successful');
+    // }, [localStorage.getItem('renderBinder')])
 
     function isActive(route) {
         return route == router.pathname ? 'active' : '';
@@ -53,19 +63,19 @@ const Navbar = (props) => {
             <nav className='nav'>
                 <ul>
                     <Link href="/">
-                        <li className={isActive('/')}>
+                        <li className={isActive('/'), 'underline'}>
                             <Typography>Home</Typography>
                         </li>
                     </Link>
                     <Link href='/src/Rough'>
-                        <li className={isActive('/src/Rough')}>
+                        <li className={isActive('/src/Rough'), 'underline'}>
                             <Typography>Rough</Typography>
                         </li>
                     </Link>
                     {
                         LoggedInContent &&
                         <Link href='/src/auth/Login'>
-                            <li className={isActive('/src/auth/Login')}>
+                            <li className={isActive('/src/auth/Login'), 'underline'}>
                                 <Typography>Login</Typography>
                             </li>
                         </Link>
@@ -73,22 +83,22 @@ const Navbar = (props) => {
                     {
                         LoggedInContent &&
                         <Link href='/src/auth/Signup'>
-                            <li className={isActive('/src/auth/Signup')}>
-                                <Typography sx={{TransitionEvent: '0.5s'}}>SignUp</Typography>
+                            <li className={isActive('/src/auth/Signup'), 'underline'}>
+                                <Typography sx={{ TransitionEvent: '0.5s' }}>SignUp</Typography>
                             </li>
                         </Link>
                     }
                     <Link href='/src/Details'>
-                        <li className={isActive('/src/Details')}>
+                        <li className={isActive('/src/Details'), 'underline'}>
                             <Typography>Details</Typography>
                         </li>
                     </Link>
                     {
                         !LoggedInContent &&
-                        <li className={isActive('')}>
+                        <li className={isActive(''), 'underline'}>
                             <>
                                 <Typography aria-controls='stream-menu' aria-haspopup='true'
-                                onClick={handleClickOnMenu} >Steam</Typography>
+                                    onClick={handleClickOnMenu} >Steam</Typography>
 
                                 <Menu disableAutoFocusItem
                                     PaperProps={{
@@ -117,25 +127,62 @@ const Navbar = (props) => {
                             </>
                         </li>
                     }
+                   
                     {
                         !LoggedInContent &&
-                        <li onClick={handleLogout}>
+                        <li className='underline' onClick={handleClickOnMinicart}>
+                            <Typography onClick={handleClickOnMinicart}>
+                                Cart
+                            </Typography>
+                            <Popper onClick={handleClickOnMinicart} open={Boolean(anchorEl)} anchorEl={anchorEl}>
+                                <Box borderRadius='borderRadius' borderColor={'#313131b8'} bgcolor={'background.paper'}
+                                    border={1} p={3} sx={{ width: '50vh'}}
+                                >
+
+                                    <Grid container
+                                        justifyContent='space-between'
+                                    >
+                                        <Grid item>
+                                            <Grid container direction='column' justifyContent='flex-start'>
+                                            <Grid item>
+                                                    <p>20 hours Cloud DVR</p>
+                                                </Grid> 
+                                            <Grid item>
+                                                    <h4>subtotal</h4>
+                                                </Grid> 
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item>
+                                            <Grid container direction='column' justifyContent='flex-end'>
+                                                <Grid item>
+                                                    <p>included</p>
+                                                </Grid>
+                                                <Grid item>
+                                                <h4>$100</h4>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
+                                </Box>
+                            </Popper>
+                        </li>}
+
+
+
+
+
+
+
+
+
+
+                        {
+                        !LoggedInContent &&
+                        <li className='underline' onClick={handleLogout}>
                             <Typography>Logout</Typography>
                         </li>
                     }
-                    <li onClick={handleClickOnMinicart}>
-                        <Typography onClick={handleClickOnMinicart}>
-                            Toggle Popper
-                        </Typography>
-                        <Popper onClick={handleClickOnMinicart} open={Boolean(anchorEl)} anchorEl={anchorEl}>
-                            <Box borderRadius='borderRadius' borderColor={'#313131b8'} bgcolor={'background.paper'} border={1} p={3}>
-                                <p>The content of the Popper.</p>
-                                <p>The content of the Popper.</p>
-                                <p>The content of the Popper.</p>
-                                <p>The content of the Popper.</p>
-                            </Box>
-                        </Popper>
-                    </li>
                 </ul>
             </nav>
         </>

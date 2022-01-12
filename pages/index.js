@@ -34,27 +34,31 @@ const index = ({ss, dbData}) => {
         </title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
-
-
       </Head>
       {/* <Navbar ss={ss} dbData= {dbData} /> */}
       <main>
-        <section className="section">
+        <img width='100%' width='100%' src="https://9to5mac.com/wp-content/uploads/sites/6/2021/12/screenshot-2021-12-10-at-08.35.40@2x.jpg?quality=82&strip=all" />
+
+
+
+
+
+        {/* <section className="section"> */}
         {/* <Button variant="outlined" color="error">
           ok</Button> */
           // console.log(data + 'is the data')
           }
         
 
-        <h1>This is my home page</h1>
+        {/* <h1>This is my home page</h1>
         <button onClick={() => { toast.success('toast') }}>toast</button>
-        </section>
+        </section> */}
       </main>
-      <footer style={{ position: 'fixed' }}>
+      {/* <footer style={{ position: 'fixed' }}>
         <p>Copyright &copy; {new Date().getFullYear()},
           my coding journey
         </p>
-      </footer>
+      </footer> */}
 
     </>
   )

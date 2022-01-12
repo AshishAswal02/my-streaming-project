@@ -4,14 +4,10 @@ import { Paper, Divider, Box, Button, Grid } from '@material-ui/core';
 
 const Choice = () => {
 
-
-
     return (
         <div className='choiceBackground'>
 
             <Grid container spacing={1} >
-
-
                 <Grid item lg={6}>
                     <div className='offerImage'>
                         <img width='100%' height='100%' src="/images/pic1.jpg" alt="offerImage" />
@@ -20,7 +16,7 @@ const Choice = () => {
                 <Grid item lg={6}>
                     <div className='offerDetails'>
                         <Paper className="paper">
-                            <Box mb={5}  className='summary'>
+                            <Box mb={5} className='summary'>
                                 <img width='100%' src="https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_CHOICE_Header.svg" />
                                 <Box pl={1} 
                                 border={8}>
