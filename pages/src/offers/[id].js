@@ -47,13 +47,20 @@ const Deatils = ({ data: offer }) => {
     const [cookies, setCookie, removeCookie] = useCookies();
     const { name, color, offerPrice, bgColor, bgImage, offerImage, data: { heading }, data: { details }, data: { moreInfo } } = offer;
 
-    // useEffect(() => {
-    //     const restrictAccess = sessionStorage.getItem('restrictAccess');
-    //     if (restrictAccess === 'on') {      //if auth is false, redirect to Login
-    //         // setTimeout(() => {toast.warn('please login first', {autoClose : 2000})}, 5000);
-    //         router.push('../auth/Login');
-    //     }
-    //  }, []);
+    useEffect(() => {
+        const restrictAccess = sessionStorage.getItem('restrictAccess');
+        if (restrictAccess === 'on') {      //if auth is false, redirect to Login
+            // setTimeout(() => {toast.warn('please login first', {autoClose : 2000})}, 5000);
+            router.push('../auth/Login');
+        }
+        return () => {
+            removeCookie('starz', { path: '/' });
+            removeCookie('cinemax', { path: '/' });
+            removeCookie('current_offer', { path: '/' });
+            removeCookie('current_offer_price', { path: '/' });
+        }
+     }, []);
+
     
     useEffect(() => {
         setStarzToggle(false);

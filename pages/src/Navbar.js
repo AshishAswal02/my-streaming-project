@@ -95,13 +95,16 @@ const Navbar = () => {
                             </li>
                         </Link>
                     }
-                    <Link href='/src/Details'>
-                        <li className={isActive('/src/Details'), 'underline'}>
-                            <Typography>Details</Typography>
-                        </li>
-                    </Link>
                     {
-                        // !LoggedInContent &&
+                        !LoggedInContent &&
+                        <Link href='/src/Details'>
+                            <li className={isActive('/src/Details'), 'underline'}>
+                                <Typography>Details</Typography>
+                            </li>
+                        </Link>
+                    }
+                    {
+                        !LoggedInContent &&
                         <li className={isActive(''), 'underline'}>
                             <>
                                 <Typography aria-controls='stream-menu' aria-haspopup='true'
@@ -136,11 +139,11 @@ const Navbar = () => {
                     }
 
                     {
-                        // !LoggedInContent &&
+                        !LoggedInContent &&
                         <li className='underline' onClick={handleClickOnMinicart}>
-                            <Minicart cookieData = {cookieData} 
-                            anchorElMinicart = {anchorElMinicart} 
-                            handleClickOnMinicart = {handleClickOnMinicart}
+                            <Minicart cookieData={cookieData}
+                                anchorElMinicart={anchorElMinicart}
+                                handleClickOnMinicart={handleClickOnMinicart}
                             />
                         </li>}
 
