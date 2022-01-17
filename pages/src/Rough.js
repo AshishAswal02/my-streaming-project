@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Link from 'next/link'
-import { Button, Box, Typography, CircularProgress , Backdrop , Popper, Paper } from '@material-ui/core';
-// import { ToggleButton } from '@mui/material';
+// import cookie from 'js-cookie' 
+import { useCookies } from 'react-cookie';
+import { Button, Box, Typography, CircularProgress, Backdrop, Popper, Paper } from '@material-ui/core';
+import { con1 } from '../_app'
 
-    // const res = await fetch('http://localhost:3000/api/packageInfo');
+// const res = await fetch('http://localhost:3000/api/packageInfo');
 
 const Rough = () => {
     const [anchor, setAnchor] = useState(null);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openBackdrop, setOpenBackdrop] = useState(false);
+    const [cookies, setCookies] = useCookies(['channels']);
+    const [count, setCount] = useState(0);
+    const c1 = useContext(con1);
 
 
     const openPopover = (e) => {
@@ -33,12 +38,13 @@ const Rough = () => {
 
     return (
         <>
+            
 
             <button type="button" onClick={handleClick}>
                 Toggle Popper
             </button>
             <Popper open={open} anchorEl={anchorEl}>
-                <Box  borderRadius='borderRadius' borderColor={'#313131b8'} bgcolor={'background.paper'} border={1} p={2}>
+                <Box borderRadius='borderRadius' borderColor={'#313131b8'} bgcolor={'background.paper'} border={1} p={2}>
                     <p>The content of the Popper.</p>
                     <p>The content of the Popper.</p>
                     <p>The content of the Popper.</p>
@@ -75,22 +81,28 @@ const Rough = () => {
                 </Paper>
             </Popper>
 
-                <Button onClick = {handleBackdrop} > setOpenToTrue </Button>
-                <Backdrop open = {openBackdrop} onClick={handleClose}>
+            <Button onClick={handleBackdrop} > setOpenToTrue </Button>
+            <Backdrop open={openBackdrop} onClick={handleClose}>
                 <Paper>
                     <p>hi there</p>
                     <p>hi there</p>
                     <p>hi there</p>
                 </Paper>
-                </Backdrop>
-            
-                <div className="section">
-                    <Link style={{background:'red'}} href="">
-                        link
-                    </Link>
-                </div>
+            </Backdrop>
 
+            <div className="section">
 
+            </div>
+            <button onClick={() => {
+                setCount(count + 1);
+                setCookies('cookie key', count, { path: '/' });
+                console.dir(cookie);
+                // cookie.set('cookie key', 'cookie value', {expires : 1 / 24});
+            }}> click here </button>
+
+            <br />
+
+            <button onClick={() => alert(c1)}>context api</button>
             {/* <Popover
                 open={Boolean(anchor)}
                 anchorEl={anchor}

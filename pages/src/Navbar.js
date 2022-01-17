@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router'
-import { Typography, Grid, Popper, Box, MenuItem, Menu } from '@material-ui/core';
+import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
+// import Cookies from "js-cookie";
+import { Typography, MenuItem, Menu } from '@material-ui/core';
+import Minicart from './Minicart';
 
 
 const Navbar = () => {
@@ -12,7 +15,9 @@ const Navbar = () => {
     const [LoggedInContent, setLoggedInContent] = useState(false);
     // const [openBackdrop, setOpenBackdrop] = useState(false);
     const [anchorElMenu, setAnchorElMenu] = useState(null);
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [cookies] = useCookies();
+    const [cookieData, setCookieData] = useState({});
+
 
     const handleLogout = () => {
         sessionStorage.setItem('restrictAccess', 'on');
@@ -20,9 +25,7 @@ const Navbar = () => {
         router.push('/');
     }
 
-    const handleClickOnMinicart = e => {
-        setAnchorEl(anchorEl ? null : e.currentTarget);
-    };
+    
 
     const handleClickOnMenu = e => {
         setAnchorElMenu(anchorElMenu ? null : e.currentTarget);
@@ -41,16 +44,17 @@ const Navbar = () => {
             .then(data => {
                 setPackages(data);
             });
-
-            // setKey(localStorage.key(1));
-            // setValue(localStorage.getItem('cinemax'));
-            // console.log(Object.entries(localStorage));
-
     }, []);
 
-    // useEffect(() => {
-    //     console.log(' mission successful');
-    // }, [localStorage.getItem('renderBinder')])
+    useEffect(() => {
+        setCookieData(
+            document.cookie
+                .split(';')
+                .map(i => i.split('='))
+                .reduce((acc, [key, value]) =>
+                    ({ ...acc, [key.trim()]: decodeURIComponent(value) }), {})
+        )
+    }, [cookies]);
 
     function isActive(route) {
         return route == router.pathname ? 'active' : '';
@@ -94,7 +98,7 @@ const Navbar = () => {
                         </li>
                     </Link>
                     {
-                        !LoggedInContent &&
+                        // !LoggedInContent &&
                         <li className={isActive(''), 'underline'}>
                             <>
                                 <Typography aria-controls='stream-menu' aria-haspopup='true'
@@ -127,45 +131,11 @@ const Navbar = () => {
                             </>
                         </li>
                     }
-                   
+
                     {
-                        !LoggedInContent &&
+                        // !LoggedInContent &&
                         <li className='underline' onClick={handleClickOnMinicart}>
-                            <Typography onClick={handleClickOnMinicart}>
-                                Cart
-                            </Typography>
-                            <Popper onClick={handleClickOnMinicart} open={Boolean(anchorEl)} anchorEl={anchorEl}>
-                                <Box borderRadius='borderRadius' borderColor={'#313131b8'} bgcolor={'background.paper'}
-                                    border={1} p={3} sx={{ width: '50vh'}}
-                                >
-
-                                    <Grid container
-                                        justifyContent='space-between'
-                                    >
-                                        <Grid item>
-                                            <Grid container direction='column' justifyContent='flex-start'>
-                                            <Grid item>
-                                                    <p>20 hours Cloud DVR</p>
-                                                </Grid> 
-                                            <Grid item>
-                                                    <h4>subtotal</h4>
-                                                </Grid> 
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item>
-                                            <Grid container direction='column' justifyContent='flex-end'>
-                                                <Grid item>
-                                                    <p>included</p>
-                                                </Grid>
-                                                <Grid item>
-                                                <h4>$100</h4>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-
-                                </Box>
-                            </Popper>
+                            <Minicart cookieData = {cookieData} />
                         </li>}
 
 
@@ -177,7 +147,7 @@ const Navbar = () => {
 
 
 
-                        {
+                    {
                         !LoggedInContent &&
                         <li className='underline' onClick={handleLogout}>
                             <Typography>Logout</Typography>
