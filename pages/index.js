@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import Index_rough from './Index_rough'
 // import Link from 'next/link'
 import Head from 'next/head'
