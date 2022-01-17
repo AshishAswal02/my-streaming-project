@@ -3,18 +3,22 @@ import { useEffect, useState } from 'react';
 
 const Minicart = ({ cookieData, anchorElMinicart, handleClickOnMinicart }) => {
 
-    const { starz, cinemax } = cookieData;
+    const { starz, cinemax, current_offer, current_offer_price} = cookieData;
     const [total, setTotal] = useState(NaN);
 
+    // useEffect(() => {
+    //     console.log(current_offer + " ara?");
+    //     console.log(current_offer_price + " or ye?");
+    // }, [])
 
     useEffect(() => {
 
-        const sum = 100.00;
-
+        const sum = 0.00;
+        if (current_offer_price !== undefined) sum += parseFloat(current_offer_price.slice(1,6));
         if (starz !== undefined) sum += parseFloat(starz.slice(1, 6)); 
         if (cinemax !== undefined) sum += parseFloat(cinemax.slice(1, 6));
-        setTotal(sum);
-    }, [starz, cinemax]);
+        setTotal(sum.toFixed(2));
+    }, [starz, cinemax, current_offer]);
 
     return (
         <div>
@@ -32,14 +36,17 @@ const Minicart = ({ cookieData, anchorElMinicart, handleClickOnMinicart }) => {
                         <Grid item>
                             <Grid container direction='column' justifyContent='flex-start'>
                                 <Grid item>
+                                    <h4>{current_offer}</h4>
+                                </Grid>
+                                <Grid item>
                                     <p>20 hours Cloud DVR</p>
                                 </Grid>
                                 {starz && <Grid item>
-                                    <p>starz</p>
+                                    <p>starz&reg;</p>
                                 </Grid>}
 
                                 {cinemax && <Grid item>
-                                    <p>cinemax</p>
+                                    <p>cinemax&reg;</p>
                                 </Grid>}
                                 <Box mt={2} mb={2}>
                                         <Divider />
@@ -51,6 +58,9 @@ const Minicart = ({ cookieData, anchorElMinicart, handleClickOnMinicart }) => {
                         </Grid>
                         <Grid item>
                             <Grid container direction='column' justifyContent='flex-end'>
+                                <Grid item>
+                                    <p>{current_offer_price}</p >
+                                </Grid>
                                 <Grid item>
                                     <p>included</p>
                                 </Grid>

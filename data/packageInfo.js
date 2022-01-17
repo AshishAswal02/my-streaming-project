@@ -3,6 +3,7 @@ export const packages = [
     {
         id: "1",
         name: "Choice",
+        offerPrice: '$50.99/mo.',
         color: "#e88534",
         bgColor: "",
         bgImage: "/images/pic1.jpg",
@@ -22,6 +23,7 @@ export const packages = [
         id: "2",
         name: "Entertainment",
         color: "#76d4f8",
+        offerPrice: '$60.99/mo.',
         bgColor: "",
         bgImage: "/images/pic2.jpg",
         offerImage: "https://www.directv.com/idpassets/sales/directv/upper_funnel/satellite/satellite_package_cards/SATELLITE_ENTERTAINMENT_Header.svg",
@@ -39,6 +41,7 @@ export const packages = [
     {
         id: "3",
         name: "Premier",
+        offerPrice: '$70.99/mo.',
         color: "#7a267b",
         bgColor: "",
         bgImage: "/images/pic3.jpg",
@@ -58,6 +61,7 @@ export const packages = [
     {
         id: "4",
         name: "Ultimate",
+        offerPrice: '$80.99/mo.',
         color: "#21528c",
         bgColor: "",
         bgImage: "/images/pic4.jpg",

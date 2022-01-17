@@ -45,7 +45,7 @@ const Deatils = ({ data: offer }) => {
     const [starzToggle, setStarzToggle] = useState(false);
     const [cinemaxToggle, setCinemaxToggle] = useState(false);
     const [cookies, setCookie, removeCookie] = useCookies();
-    const { name, color, bgColor, bgImage, offerImage, data: { heading }, data: { details }, data: { moreInfo } } = offer;
+    const { name, color, offerPrice, bgColor, bgImage, offerImage, data: { heading }, data: { details }, data: { moreInfo } } = offer;
 
     // useEffect(() => {
     //     const restrictAccess = sessionStorage.getItem('restrictAccess');
@@ -54,6 +54,14 @@ const Deatils = ({ data: offer }) => {
     //         router.push('../auth/Login');
     //     }
     //  }, []);
+    
+    useEffect(() => {
+        setStarzToggle(false);
+        setCinemaxToggle(false);
+        setCookie('current_offer', name, { path: '/' })
+        setCookie('current_offer_price', offerPrice, { path: '/' })
+    }, [name]);
+    
     useEffect(() => {
         starzToggle ?
             setCookie('starz', '$11.00/mo.', { path: '/' })
@@ -64,6 +72,8 @@ const Deatils = ({ data: offer }) => {
             : removeCookie('cinemax', { path: '/' })
 
     }, [starzToggle, cinemaxToggle]);
+
+
 
     return (
         <Box bgcolor={bgColor}>
