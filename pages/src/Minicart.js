@@ -1,16 +1,11 @@
 import { Typography, Grid, Divider, Popper, Box } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 
-const Minicart = ({ cookieData }) => {
+const Minicart = ({ cookieData, anchorElMinicart, handleClickOnMinicart }) => {
 
-    const [anchorEl, setAnchorEl] = useState(null);
     const { starz, cinemax } = cookieData;
     const [total, setTotal] = useState(NaN);
 
-
-    const handleClickOnMinicart = e => {
-        setAnchorEl(anchorEl ? null : e.currentTarget);
-    };
 
     useEffect(() => {
 
@@ -26,7 +21,7 @@ const Minicart = ({ cookieData }) => {
             <Typography onClick={handleClickOnMinicart}>
                 Cart
             </Typography>
-            <Popper onClick={handleClickOnMinicart} open={Boolean(anchorEl)} anchorEl={anchorEl}>
+            <Popper onClick={handleClickOnMinicart} open={Boolean(anchorElMinicart)} anchorEl={anchorElMinicart}>
                 <Box borderRadius='borderRadius' borderColor={'#313131b8'} bgcolor={'background.paper'}
                     border={1} p={3} sx={{ width: '50vh' }}
                 >

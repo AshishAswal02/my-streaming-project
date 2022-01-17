@@ -17,6 +17,7 @@ const Navbar = () => {
     const [anchorElMenu, setAnchorElMenu] = useState(null);
     const [cookies] = useCookies();
     const [cookieData, setCookieData] = useState({});
+    const [anchorElMinicart, setAnchorElMinicart] = useState(null);
 
 
     const handleLogout = () => {
@@ -25,7 +26,9 @@ const Navbar = () => {
         router.push('/');
     }
 
-    
+    const handleClickOnMinicart = e => {
+        setAnchorElMinicart(anchorElMinicart ? null : e.currentTarget);
+    };
 
     const handleClickOnMenu = e => {
         setAnchorElMenu(anchorElMenu ? null : e.currentTarget);
@@ -135,7 +138,10 @@ const Navbar = () => {
                     {
                         // !LoggedInContent &&
                         <li className='underline' onClick={handleClickOnMinicart}>
-                            <Minicart cookieData = {cookieData} />
+                            <Minicart cookieData = {cookieData} 
+                            anchorElMinicart = {anchorElMinicart} 
+                            handleClickOnMinicart = {handleClickOnMinicart}
+                            />
                         </li>}
 
 
