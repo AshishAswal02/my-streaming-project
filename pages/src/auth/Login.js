@@ -93,7 +93,7 @@ const Login = () => {
             </style>
             <section className='section'>
                 <h1>Login page</h1>
-                <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+                {/* <pre>{JSON.stringify(formValues, undefined, 2)}</pre> */}
                 <form className='form' onSubmit={handleSubmit}>
                     <div>
                         <input type='text' id='email' placeholder='email *' value={formValues.email}

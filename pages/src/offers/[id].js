@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { Grid, Paper, Box, Divider } from '@material-ui/core'
 import Head from 'next/head'
 import { route } from 'next/dist/server/router';
+import { useCookies } from 'react-cookie';
 // import path from "/images/pic1.jpg"
 
 
@@ -41,35 +42,26 @@ export async function getStaticProps(context) {
 const Deatils = ({ data: offer }) => {
 
     const router = useRouter();
-    const [starzToggle, setStazToggle] = useState(false);
+    const [starzToggle, setStarzToggle] = useState(false);
     const [cinemaxToggle, setCinemaxToggle] = useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies();
     const { name, color, bgColor, bgImage, offerImage, data: { heading }, data: { details }, data: { moreInfo } } = offer;
 
+    // useEffect(() => {
+    //     const restrictAccess = sessionStorage.getItem('restrictAccess');
+    //     if (restrictAccess === 'on') {      //if auth is false, redirect to Login
+    //         // setTimeout(() => {toast.warn('please login first', {autoClose : 2000})}, 5000);
+    //         router.push('../auth/Login');
+    //     }
+    //  }, []);
     useEffect(() => {
-        const restrictAccess = sessionStorage.getItem('restrictAccess');
-        if (restrictAccess === 'on') {      //if auth is false, redirect to Login
-            // setTimeout(() => {toast.warn('please login first', {autoClose : 2000})}, 5000);
-            router.push('../auth/Login');
-        }
-    }, []);
-    useEffect(() => {
-        if (starzToggle){
-            console.log('adding staz');
-            localStorage.setItem('staz', '$11.00/mo.');
-        }
-        else{
-            console.log('removing staz');
-            localStorage.removeItem('staz');
-        }
-        if (cinemaxToggle){
-            console.log('adding cinemax');
-            localStorage.setItem('cinemax', '$08.00/mo.');
-        }
-        else{
-            console.log('removing cinemax');
-            localStorage.removeItem('cinemax');
-        }
-        // localStorage.setItem('renderBinder' , localStorage.getItem('renderBinder') + '1');
+        starzToggle ?
+            setCookie('starz', '$11.00/mo.', { path: '/' })
+            : removeCookie('starz', { path: '/' });
+
+        cinemaxToggle ?
+            setCookie('cinemax', '$08.00/mo.', { path: '/' })
+            : removeCookie('cinemax', { path: '/' })
 
     }, [starzToggle, cinemaxToggle]);
 
@@ -106,9 +98,12 @@ const Deatils = ({ data: offer }) => {
                                     </Grid>
 
                                     <Box my={5} border={1}
-                                        onClick={() => { setStazToggle(!starzToggle) }}
+                                        onClick={() => { setStarzToggle(!starzToggle) }}
                                         className={starzToggle ? 'selectedChannel' : 'unselectedChannel'}
-                                        borderRadius={'borderRadius'} m={1} mx={1} border={1} p={1}
+                                        borderRadius={'borderRadius'}
+                                        m={1}
+                                        // border={1} 
+                                        p={1}
                                     >
                                         <Grid
                                             container
@@ -155,7 +150,10 @@ const Deatils = ({ data: offer }) => {
                                     <Box my={5} border={1}
                                         onClick={() => { setCinemaxToggle(!cinemaxToggle) }}
                                         className={cinemaxToggle ? 'selectedChannel' : 'unselectedChannel'}
-                                        borderRadius={'borderRadius'} m={1} mx={1} border={1} p={3}
+                                        borderRadius={'borderRadius'}
+                                        m={1}
+                                        // border={1} 
+                                        p={3}
                                     >
                                         <Grid
                                             container
@@ -185,7 +183,7 @@ const Deatils = ({ data: offer }) => {
                                                     </Grid>
                                                     <Grid item >
                                                         <Box my={1}>
-                                                            <h4>See what you get</h4>
+                                                            <h4 className='Styledh4'>See what you get</h4>
                                                         </Box>
                                                     </Grid>
                                                     <Grid item align='left'>

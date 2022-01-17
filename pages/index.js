@@ -21,7 +21,7 @@ export async function getStaticProps() {
   }
 }
 
-const index = ({ss, dbData}) => {
+const index = () => {
 
 
 

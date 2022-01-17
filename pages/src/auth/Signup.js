@@ -49,7 +49,7 @@ const Signup = () => {
         <div>
             <section className='section'>
                 <h1>SignUp page</h1>
-                <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+                {/* <pre>{JSON.stringify(formValues, undefined, 2)}</pre> */}
                 <form className='form' onSubmit={handleSubmit}>
                     <div>
                         <input type='text' id='username' placeholder='name *'
