@@ -9,17 +9,17 @@ import 'react-toastify/dist/ReactToastify.css';
 // import { Button } from '@mui/material';
 
 
-export async function getStaticProps() {
-  const res = await fetch('http://localhost:3000/api/packageInfo');
-  const dbData = await res.json();
+//export async function getStaticProps() {
+ //const res = await fetch('http://localhost:3000/api/packageInfo');
+  //const dbData = await res.json();
 
-  return {
-      props: {
-          dbData,
-          ss: 1
-      }
-  }
-}
+  //return {
+      //props: {
+          //dbData,
+          //ss: 1
+      //}
+  //}
+//}
 
 const index = () => {
 
